@@ -8,6 +8,10 @@ const AlbumDetail = ({ album }) => {
   const { title, artist, thumbnail_image, image } = album;
   const { headerContentStyle, headerTextStyle, imageStyle, 
           thumbnailStyle, thumbnailContainerStyle } = styles;
+  
+  const onClicked = () => {
+    console.log('[DEBUG] - <AlbumDetail> Click Me! button is clicked. Title: ', title);
+  };
 
   return (
     <Card>
@@ -26,7 +30,7 @@ const AlbumDetail = ({ album }) => {
       </CardSection>
 
       <CardSection>
-        <Button label="Clik Me!" />
+        <Button label="Clik Me!" onClicked={() => onClicked()} />
       </CardSection>
     </Card>
   );
