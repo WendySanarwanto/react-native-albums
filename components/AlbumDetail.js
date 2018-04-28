@@ -1,18 +1,14 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, Linking, Text, View } from 'react-native';
 import Button from './Button';
 import Card from './Card';
 import CardSection from './CardSection';
 
 const AlbumDetail = ({ album }) => {
-  const { title, artist, thumbnail_image, image } = album;
+  const { title, artist, thumbnail_image, image, url } = album;
   const { headerContentStyle, headerTextStyle, imageStyle, 
           thumbnailStyle, thumbnailContainerStyle } = styles;
   
-  const onClicked = () => {
-    console.log('[DEBUG] - <AlbumDetail> Click Me! button is clicked. Title: ', title);
-  };
-
   return (
     <Card>
       <CardSection>
@@ -30,7 +26,7 @@ const AlbumDetail = ({ album }) => {
       </CardSection>
 
       <CardSection>
-        <Button label="Clik Me!" onClicked={() => onClicked()} />
+        <Button label="Clik Me!" onClicked={() => Linking.openURL(url)} />
       </CardSection>
     </Card>
   );
