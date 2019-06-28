@@ -9,8 +9,8 @@
     "menu": "adb shell input keyevent 82"
   },
   "dependencies": {
-    "react": "16.3.1",
-    "react-native": "0.55.3"
+    "react": "16.8.3",
+    "react-native": "0.59.9"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
