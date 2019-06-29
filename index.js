@@ -8,7 +8,8 @@ import Root from './src/components/Root';
 // Create a Component
 const App = () => (
   <Root>
-    <View style={{ flex: 1 }}>
+    {/* flex: 1 on root component prevents bouncing on scrollview component */}
+    <View style={{ flex: 1 }}> 
       <Header title='Albums' />
       <AlbumList />    
     </View>
