@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import React, { Component, Fragment } from 'react';
+import { ScrollView, Text } from 'react-native';
+import { connect } from 'react-redux';
+
 import AlbumDetail from './AlbumDetail';
+import { doFetchAlbums } from '../actions';
 
 class AlbumList extends Component {
   state = {
     albumsList: []
   }
 
-  async componentDidMount() {
-    const albumsList = await fetch('https://rallycoding.herokuapp.com/api/music_albums')
-      .then(response => response.json());
-    this.setState({ albumsList });
-    console.log('[DEBUG] - <AlbumList.componentDidMount> this.state.albumsList: \n', 
-                this.state.albumsList);
+  componentDidMount() {
+    this.props.doFetchAlbums();
   }
 
   renderAlbums() {
-    const { albumsList } = this.state;
-    return albumsList.map(album => 
+    const { albums } = this.props;
+    if (!albums) return <Fragment><Text>Loading ...</Text></Fragment>;
+
+    return albums.map(album => 
       <AlbumDetail key={album.title} album={album} />
     );
   }
@@ -31,4 +32,10 @@ class AlbumList extends Component {
   }
 }
 
-export default AlbumList;
+function mapStateToProps({ albums }) {
+  return {
+    albums
+  };
+}
+
+export default connect(mapStateToProps, { doFetchAlbums })(AlbumList);
